@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CameraMoveScript : MonoBehaviour
 {
-    public Transform[] CameraStopPoints;
+    public Vector3[] CameraStopPoints;
 
     public float cameraSpeed;
 
     private bool forward;
-    private Transform target;
+    private Vector3 target;
     private int currentTargetIndex;
     // Start is called before the first frame update
     void Start()
@@ -17,14 +17,14 @@ public class CameraMoveScript : MonoBehaviour
         forward = true;
         currentTargetIndex = 0;
         target = CameraStopPoints[1];
-        transform.position = CameraStopPoints[0].position;
+        transform.position = CameraStopPoints[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * cameraSpeed);
-        if (transform.position == target.position)
+        transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * cameraSpeed);
+        if (transform.position == target)
             ChangeTarget();
     }
 

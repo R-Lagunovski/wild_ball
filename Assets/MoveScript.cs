@@ -4,16 +4,16 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MoveScript : MonoBehaviour
 {
-    public GameObject[] TeamRunners;
+    public Transform[] TeamRunners;
 
     public RunnerScript RunnerScript;
 
     public float speed;
     public bool move;
 
-    private GameObject nextRunner;
+    private Transform nextRunner;
     private int currentTargetIndex;
-    private GameObject currentRunner;
+    private Transform currentRunner;
     public float passDistance;
 
     void Start()
@@ -27,11 +27,11 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
-        currentRunner.transform.position = Vector3.MoveTowards(currentRunner.transform.position, nextRunner.transform.position, Time.deltaTime * speed);
-        currentRunner.transform.LookAt(nextRunner.transform);
+        currentRunner.position = Vector3.MoveTowards(currentRunner.position, nextRunner.position, Time.deltaTime * speed);
+        currentRunner.LookAt(nextRunner.transform);
 
 
-        if (Vector3.Distance(currentRunner.transform.position, nextRunner.transform.position) <= passDistance) 
+        if (Vector3.Distance(currentRunner.position, nextRunner.position) <= passDistance) 
             ChangeTarget();
     }
 
