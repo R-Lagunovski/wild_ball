@@ -10,13 +10,23 @@ public class BoobScript : MonoBehaviour
 
     void Update()
     {
-        Timer -= Time.deltaTime;
+        TimerMethod();
 
         if (Timer <= 0)
         {
-            Boom();
-            Timer = 5;
+            onTimerEndAction();
         }
+    }
+
+    private void TimerMethod()
+    {
+        Timer -= Time.deltaTime;
+    }
+
+    private void onTimerEndAction()
+    {
+        Boom();
+        Timer = 5;
     }
 
     public void Boom()
