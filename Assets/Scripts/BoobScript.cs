@@ -8,14 +8,6 @@ public class BoobScript : MonoBehaviour
     public float Radius;
     public float Power;
 
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Timer -= Time.deltaTime;
