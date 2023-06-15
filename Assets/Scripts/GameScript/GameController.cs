@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject prevScreen;
+    [SerializeField] private GameObject restartMenu;
 
     private GameObject curScreen;
     private bool paused;
@@ -42,5 +41,23 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0;
 
         paused = !paused;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RestartMenu()
+    {
+        Debug.Log("Restart Menu");
+        PauseGame();
+
+        if (curScreen != null)
+        {
+            curScreen.SetActive(false);
+            restartMenu.SetActive(true);
+            curScreen = restartMenu;
+        }
     }
 }
