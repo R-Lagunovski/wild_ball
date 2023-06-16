@@ -10,6 +10,8 @@ namespace WildBall.Inputs
     public class PlayerSctipt : MonoBehaviour
     {
         [SerializeField] private GameObject EventSystem;
+        [SerializeField] private GameObject playerBody;
+        [SerializeField] private new ParticleSystem particleSystem;
         private Vector3 movement;
         private PlayedMovement playerMovement;
         private GameController gameController;
@@ -44,8 +46,11 @@ namespace WildBall.Inputs
             Debug.Log("Trigger GameOver before if " + other.gameObject.tag);
             if (other.gameObject.tag == "EndGameTrigger")
             {
-                Debug.Log("Trigger GameOver");
-                gameController.RestartMenu();
+                particleSystem.Play();
+                playerBody.SetActive(false);
+                rb.constraints = RigidbodyConstraints.FreezePosition;
+                gameController.StartRestartCoroutine();
+
             }
 
             if (other.gameObject.tag == "Finish")

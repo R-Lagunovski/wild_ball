@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class GameController : MonoBehaviour
         curScreen = prevScreen;
         Time.timeScale = 1;
         Debug.Log("Start " + paused + ' ' + Time.timeScale);
-
     }
 
     public void UpdateScreen(GameObject state)
@@ -59,5 +59,17 @@ public class GameController : MonoBehaviour
             restartMenu.SetActive(true);
             curScreen = restartMenu;
         }
+    }
+
+    public void StartRestartCoroutine()
+    {
+        Coroutine coroutine = StartCoroutine(endGameTimer());
+    }
+
+    private IEnumerator endGameTimer()
+    {
+        yield return new WaitForSeconds(2f);
+        RestartMenu();
+        Debug.Log("Coroutine.");
     }
 }

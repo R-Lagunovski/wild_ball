@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class СoinScript : MonoBehaviour
 {
-
+    [SerializeField] ParticleSystem ParticleSys;
     private Animator anim;
+    private ParticleSystem ps;
+
 
     void Awake()
     {
@@ -15,6 +17,7 @@ public class СoinScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         anim.SetTrigger("Collect");
-        Destroy(gameObject, 0.6f);
+        ParticleSys.Play(); 
+        Destroy(gameObject, 1f);
     }
 }
