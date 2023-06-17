@@ -16,12 +16,10 @@ namespace WildBall.Inputs
         private PlayedMovement playerMovement;
         private GameController gameController;
 
-        private Animator anim;
         private Rigidbody rb;
 
         private void Awake()
         {
-            anim = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             playerMovement = GetComponent<PlayedMovement>();
             gameController = EventSystem.GetComponent<GameController>();
@@ -31,7 +29,6 @@ namespace WildBall.Inputs
         {
             float horizontal = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             float vertical = Input.GetAxis(Constants.VERTICAL_AXIS);
-            anim.SetFloat("Velocity", rb.velocity.magnitude);
 
             movement = new Vector3(horizontal,0, vertical).normalized;
         }
@@ -43,7 +40,6 @@ namespace WildBall.Inputs
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Trigger GameOver before if " + other.gameObject.tag);
             if (other.gameObject.tag == "EndGameTrigger")
             {
                 particleSystem.Play();
@@ -55,7 +51,6 @@ namespace WildBall.Inputs
 
             if (other.gameObject.tag == "Finish")
             {
-                Debug.Log("Finish");
                 gameController.ChangeScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
