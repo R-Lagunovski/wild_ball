@@ -72,4 +72,13 @@ public class GameController : MonoBehaviour
         RestartMenu();
         Debug.Log("Coroutine.");
     }
+
+    public void QuitApplication()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
